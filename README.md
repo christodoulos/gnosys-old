@@ -1,5 +1,5 @@
-![basicnxflow](https://github.com/github/docs/actions/workflows/basicnxflow.yml/badge.svg)
+![basicnxflow](https://github.com/christodoulos/gnosys/.github/workflows/basicnxflow.yml/badge.svg)
 
 # Gnosys
 
-This project was generated using [Nx](https://nx.dev).
+This project was generated using [Nx](https://nx.dev)
