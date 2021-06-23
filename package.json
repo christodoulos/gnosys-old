@@ -25,7 +25,8 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -67,9 +68,11 @@
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "husky": "^6.0.0",
     "jest": "27.0.3",
     "jest-preset-angular": "9.0.3",
     "prettier": "2.2.1",
+    "pretty-quick": "^3.1.1",
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4"
