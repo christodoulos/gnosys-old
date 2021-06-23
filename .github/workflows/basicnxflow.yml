@@ -1,0 +1,24 @@
+name: Test and Build
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup NodeJS 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm i
+      - name: Lint and Build
+        uses: MansaGroup/nrwl-nx-action@v2.0.4
+        with:
+          targets: lint,test,build
+          all: 'true'
