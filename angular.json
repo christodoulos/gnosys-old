@@ -87,6 +87,10 @@
             "jestConfig": "apps/gnosys/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
