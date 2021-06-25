@@ -1,4 +1,5 @@
 const { guessProductionMode } = require('@ngneat/tailwind');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   prefix: '',
@@ -8,7 +9,11 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   variants: {
     extend: {},

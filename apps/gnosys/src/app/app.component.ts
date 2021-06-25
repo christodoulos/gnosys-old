@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gnosys';
+  offCanvasVisible = false;
+
+  toggleOffCanvas() {
+    this.offCanvasVisible = !this.offCanvasVisible;
+  }
 }
