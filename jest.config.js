@@ -3,5 +3,6 @@ module.exports = {
     '<rootDir>/apps/gnosys',
     '<rootDir>/libs/state',
     '<rootDir>/libs/services',
+    '<rootDir>/libs/ui',
   ],
 };
