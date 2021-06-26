@@ -1,1 +1,3 @@
-module.exports = { projects: ['<rootDir>/apps/gnosys'] };
+module.exports = {
+  projects: ['<rootDir>/apps/gnosys', '<rootDir>/libs/state'],
+};

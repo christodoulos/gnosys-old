@@ -119,6 +119,31 @@
           }
         }
       }
+    },
+    "state": {
+      "projectType": "library",
+      "root": "libs/state",
+      "sourceRoot": "libs/state/src",
+      "prefix": "gnosys",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/state"],
+          "options": {
+            "jestConfig": "libs/state/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/state/src/**/*.ts",
+              "libs/state/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
