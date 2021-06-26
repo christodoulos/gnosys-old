@@ -16,6 +16,10 @@ const routes: Routes = [
   //      (m) => m.OptistructureCommonModule
   //    ),
   //},
+  {
+    path: '',
+    loadChildren: () => import('@gnosys/landing').then((m) => m.LandingModule),
+  },
 ];
 
 @NgModule({
