@@ -29,6 +29,9 @@
       "tags": [],
       "implicitDependencies": ["gnosys"]
     },
+    "services": {
+      "tags": []
+    },
     "state": {
       "tags": []
     }
