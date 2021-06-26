@@ -120,6 +120,31 @@
         }
       }
     },
+    "landing": {
+      "projectType": "library",
+      "root": "libs/landing",
+      "sourceRoot": "libs/landing/src",
+      "prefix": "gnosys",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/landing"],
+          "options": {
+            "jestConfig": "libs/landing/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/landing/src/**/*.ts",
+              "libs/landing/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "services": {
       "projectType": "library",
       "root": "libs/services",

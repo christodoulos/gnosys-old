@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@gnosys/landing": ["libs/landing/src/index.ts"],
       "@gnosys/services": ["libs/services/src/index.ts"],
       "@gnosys/state": ["libs/state/src/index.ts"],
       "@gnosys/ui": ["libs/ui/src/index.ts"]
