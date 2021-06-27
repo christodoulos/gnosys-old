@@ -9,6 +9,7 @@ import {
 } from './error-tailor.component';
 
 import { SignInUIComponent } from './sign-in-ui/sign-in-ui.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { SignInUIComponent } from './sign-in-ui/sign-in-ui.component';
       },
     }),
   ],
-  declarations: [SignInUIComponent],
-  exports: [SignInUIComponent],
+  declarations: [SignInUIComponent, ProgressBarComponent],
+  exports: [SignInUIComponent, ProgressBarComponent],
 })
 export class UIModule {}

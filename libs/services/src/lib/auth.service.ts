@@ -46,7 +46,7 @@ export class AuthService {
     if (ls) {
       const user: User = JSON.parse(ls).user;
       if (user !== undefined) {
-        return user !== null && user.emailVerified !== false ? true : false;
+        return user && user.emailVerified ? true : false;
       }
     }
     return false;

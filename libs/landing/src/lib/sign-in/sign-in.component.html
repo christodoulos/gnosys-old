@@ -1,3 +1,4 @@
+<gnosys-progress-bar *ngIf="loading$ | async"></gnosys-progress-bar>
 <gnosys-sign-in-ui
   (googleSignIn)="doGoogleSignIn()"
   (signIn)="doSignIn($event)"
