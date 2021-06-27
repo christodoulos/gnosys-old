@@ -15,8 +15,11 @@ export class AuthService {
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
+        this.updateUserData(user);
         console.log(`AUTH SERVICE: \t${user.email} is LOGGEDIN`);
-      } else [console.log('AUTH SERVICE: \tLOGGED OUT')];
+      } else {
+        console.log('AUTH SERVICE: \tLOGGED OUT');
+      }
     });
   }
 
@@ -25,6 +28,17 @@ export class AuthService {
     const provider = new firebase.auth.GoogleAuthProvider(); // https://bit.ly/3p9dABj
     await this.afAuth.signInWithPopup(provider);
     this.userService.setUserLoading(false);
+  }
+
+  private updateUserData(user: firebase.User) {
+    const data = {
+      uid: user.uid || '',
+      email: user.email || '',
+      displayName: user.displayName || '',
+      photoURL: user.photoURL || '',
+      emailVerified: user.emailVerified || false,
+    };
+    this.userService.updateUser({ ...data });
   }
 
   get isLoggedIn(): boolean {

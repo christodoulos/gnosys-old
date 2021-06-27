@@ -6,6 +6,8 @@ export const USER_LOGIN_ACTION = createAction(
   props<{ credentials: Credentials }>()
 );
 
+export const USER_GOOGLE_LOGIN_ACTION = createAction('[User] Google Login');
+
 export const USER_LOGIN_ACTION_SUCCESS = createAction('[User] Login Success');
 
 export const USER_LOGIN_ACTION_FAILURE = createAction('[User] Login Failure');
