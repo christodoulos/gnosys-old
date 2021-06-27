@@ -9,7 +9,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-const storage = persistState();
+const storage = persistState({ key: 'gnosys' });
 const providers = [{ provide: 'persistStorage', useValue: storage }];
 
 platformBrowserDynamic(providers)

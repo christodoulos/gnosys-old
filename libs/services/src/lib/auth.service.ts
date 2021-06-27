@@ -12,12 +12,29 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private afAuth: AngularFireAuth
-  ) {}
+  ) {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        console.log(`AUTH SERVICE: \t${user.email} is LOGGEDIN`);
+      } else [console.log('AUTH SERVICE: \tLOGGED OUT')];
+    });
+  }
 
   async googleSignin() {
     this.userService.setUserLoading(true);
     const provider = new firebase.auth.GoogleAuthProvider(); // https://bit.ly/3p9dABj
     await this.afAuth.signInWithPopup(provider);
     this.userService.setUserLoading(false);
+  }
+
+  get isLoggedIn(): boolean {
+    const ls = localStorage.getItem('gnosys');
+    if (ls) {
+      const user: User = JSON.parse(ls).user;
+      if (user !== undefined) {
+        return user !== null && user.emailVerified !== false ? true : false;
+      }
+    }
+    return false;
   }
 }
