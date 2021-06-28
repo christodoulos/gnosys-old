@@ -1,26 +1,3 @@
-/* https://bit.ly/2UzE8kW */
-.shim-red {
-  position: relative;
-  overflow: hidden;
-  background-color: rgba(255, 0, 0, 0.7);
-}
-.shim-red::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translateX(-100%);
-  background-image: linear-gradient(
-    90deg,
-    rgba(233, 233, 233, 1) 0,
-    rgba(233, 233, 233, 0.9) 50%,
-    rgba(233, 233, 233, 0.8) 100%
-  );
-  animation: shimmer 3s ease-out infinite;
-  content: '';
-}
-
 .shim-blue {
   position: relative;
   overflow: hidden;
@@ -41,7 +18,7 @@
     rgba(233, 233, 233, 0.9) 50%,
     rgba(233, 233, 233, 0.8) 100%
   );
-  animation: shimmer 2.5s ease-out infinite;
+  animation: shimmer 2s ease-out infinite;
   content: '';
 }
 
