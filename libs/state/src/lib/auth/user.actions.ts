@@ -8,6 +8,11 @@ export const USER_LOGIN_ACTION = createAction(
 
 export const USER_GOOGLE_LOGIN_ACTION = createAction('[User] Google Login');
 
+export const USER_GOOGLE_LOGIN_FAILURE_ACTION = createAction(
+  '[User] Google Login Failure',
+  props<{ message: string }>()
+);
+
 export const USER_LOGIN_ACTION_SUCCESS = createAction('[User] Login Success');
 
 export const USER_LOGIN_ACTION_FAILURE = createAction('[User] Login Failure');
