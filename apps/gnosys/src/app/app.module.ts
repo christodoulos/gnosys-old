@@ -8,6 +8,9 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 
+import { akitaConfig } from '@datorama/akita';
+akitaConfig({ resettable: true });
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

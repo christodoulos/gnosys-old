@@ -6,7 +6,6 @@ import { User } from './user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private user: User | undefined;
   constructor(private userStore: UserStore, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
