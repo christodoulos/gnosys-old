@@ -34,6 +34,7 @@ export class AlertEffects {
     this.actions$.pipe(
       ofType(ALERT_ERROR),
       tap((payload) => {
+        console.log('AAAAAAAAAAAAAAAAAA');
         this.alertService.add(
           payload.message,
           AlertType.Error,

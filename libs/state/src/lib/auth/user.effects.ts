@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@datorama/akita-ng-effects';
 import firebase from 'firebase/app'; // https://bit.ly/34j8dHw
 import { AngularFireAuth } from '@angular/fire/auth';
 import { resetStores } from '@datorama/akita';
-import { catchError, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { UserService } from './user.service';
 import {
@@ -42,16 +42,11 @@ export class UserEffects {
       tap(async () => {
         this.userService.setUserLoading(true);
         const provider = new firebase.auth.GoogleAuthProvider(); // https://bit.ly/3p9dABj
-        // await this.afAuth.signInWithPopup(provider).catch((onrejected) => {
-        //   console.log(onrejected);
-        //   this.actions$.dispatch(USER_GOOGLE_LOGIN_FAILURE_ACTION);
-        // });
-        try {
-          await this.afAuth.signInWithPopup(provider);
-        } catch (error) {
-          console.log('AAAAAAAAAAAAAAAAAAAAAAAA', error);
-          this.actions$.dispatch(USER_GOOGLE_LOGIN_FAILURE_ACTION);
-        }
+        await this.afAuth.signInWithPopup(provider).catch((onrejected) => {
+          this.actions$.dispatch(
+            USER_GOOGLE_LOGIN_FAILURE_ACTION({ message: onrejected.message })
+          );
+        });
         this.userService.setUserLoading(false);
       })
     )
@@ -60,8 +55,9 @@ export class UserEffects {
   userGoogleLoginFailureActionEffect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(USER_GOOGLE_LOGIN_FAILURE_ACTION),
-      tap(() => {
-        console.log('skata');
+      map((payload) => payload.message),
+      tap((message) => {
+        this.actions$.dispatch(ALERT_ERROR({ message }));
       })
     )
   );
