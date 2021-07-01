@@ -1,13 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
+import { Actions } from '@datorama/akita-ng-effects';
+import { USER_LOGOUT_ACTION } from '@gnosys/state';
 
 @Component({
   selector: 'gnosys-user-sidebar',
   templateUrl: './user-sidebar.component.html',
   styleUrls: ['./user-sidebar.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserSidebarComponent implements OnInit {
-  constructor() {}
+export class UserSidebarComponent {
+  constructor(private actions: Actions) {}
 
-  ngOnInit(): void {}
+  doSignOut() {
+    console.log('lala');
+    this.actions.dispatch(USER_LOGOUT_ACTION);
+  }
 }

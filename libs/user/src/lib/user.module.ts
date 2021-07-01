@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { UIModule } from '@gnosys/ui';
+import { StateModule } from '@gnosys/state';
 
 import { UserLandingComponent } from './user-landing/user-landing.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
@@ -16,6 +17,7 @@ import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
       { path: '', component: UserSidebarComponent, outlet: 'sidebar' },
     ]),
     UIModule,
+    StateModule,
   ],
   declarations: [UserLandingComponent, UserSidebarComponent],
 })
