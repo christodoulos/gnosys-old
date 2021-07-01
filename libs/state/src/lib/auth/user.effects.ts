@@ -53,6 +53,7 @@ export class UserEffects {
           );
         });
         this.userService.setUserLoading(false);
+        this.router.navigate(['/user']);
       })
     )
   );
@@ -65,6 +66,7 @@ export class UserEffects {
         const provider = new firebase.auth.FacebookAuthProvider();
         await this.afAuth.signInWithPopup(provider);
         this.userService.setUserLoading(false);
+        this.router.navigate(['/user']);
       })
     )
   );
