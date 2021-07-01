@@ -10,6 +10,7 @@ import {
 
 import { SignInUIComponent } from './sign-in-ui/sign-in-ui.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { GnosysLogoComponent } from './gnosys-logo/gnosys-logo.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
       },
     }),
   ],
-  declarations: [SignInUIComponent, ProgressBarComponent],
-  exports: [SignInUIComponent, ProgressBarComponent],
+  declarations: [SignInUIComponent, ProgressBarComponent, GnosysLogoComponent],
+  exports: [SignInUIComponent, ProgressBarComponent, GnosysLogoComponent],
 })
 export class UIModule {}
