@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { UIModule } from '@gnosys/ui';
+
 import { UserLandingComponent } from './user-landing/user-landing.component';
+import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
 
 @NgModule({
   imports: [
@@ -10,8 +13,10 @@ import { UserLandingComponent } from './user-landing/user-landing.component';
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
       { path: '', component: UserLandingComponent },
+      { path: '', component: UserSidebarComponent, outlet: 'sidebar' },
     ]),
+    UIModule,
   ],
-  declarations: [UserLandingComponent],
+  declarations: [UserLandingComponent, UserSidebarComponent],
 })
 export class UserModule {}
