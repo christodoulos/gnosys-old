@@ -8,6 +8,10 @@ export const USER_LOGIN_ACTION = createAction(
 
 export const USER_GOOGLE_LOGIN_ACTION = createAction('Google Login');
 
+export const USER_FACEBOOK_LOGIN_ACTION = createAction('Facebook Login');
+
+export const USER_GITHUB_LOGIN_ACTION = createAction('GitHub Login');
+
 export const USER_GOOGLE_LOGIN_FAILURE_ACTION = createAction(
   'Google Login Failure',
   props<{ message: string }>()

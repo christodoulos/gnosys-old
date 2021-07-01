@@ -13,6 +13,8 @@ export class SignInUIComponent {
   @Input() loading$: Observable<boolean | undefined> = of(false);
   @Output() signIn: EventEmitter<Credentials> = new EventEmitter<Credentials>();
   @Output() googleSignIn: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() facebookSignIn: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() githubSignIn: EventEmitter<boolean> = new EventEmitter<boolean>();
   loginForm: FormGroup<Credentials>;
 
   constructor() {
@@ -24,6 +26,14 @@ export class SignInUIComponent {
 
   emitGoogleSignIn() {
     this.googleSignIn.emit(true);
+  }
+
+  emitFacebookSignIn() {
+    this.facebookSignIn.emit(true);
+  }
+
+  emitGitHubSignIn() {
+    this.githubSignIn.emit(true);
   }
 
   emitSignIn() {

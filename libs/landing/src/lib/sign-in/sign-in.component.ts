@@ -4,6 +4,8 @@ import { Actions } from '@datorama/akita-ng-effects';
 import {
   Credentials,
   USER_GOOGLE_LOGIN_ACTION,
+  USER_FACEBOOK_LOGIN_ACTION,
+  USER_GITHUB_LOGIN_ACTION,
   UserQuery,
 } from '@gnosys/state';
 import { Observable, of } from 'rxjs';
@@ -24,6 +26,16 @@ export class SignInComponent implements OnInit {
   doGoogleSignIn() {
     console.log('Google Sign In');
     this.actions.dispatch(USER_GOOGLE_LOGIN_ACTION);
+  }
+
+  doFacebookSignIn() {
+    console.log('Facebook Sign In');
+    this.actions.dispatch(USER_FACEBOOK_LOGIN_ACTION);
+  }
+
+  doGitHubSignIn() {
+    console.log('GitHub Sign In');
+    this.actions.dispatch(USER_GITHUB_LOGIN_ACTION);
   }
 
   doSignIn(credentials: Credentials) {

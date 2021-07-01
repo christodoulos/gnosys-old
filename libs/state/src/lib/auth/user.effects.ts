@@ -9,6 +9,8 @@ import { UserService } from './user.service';
 import {
   USER_GOOGLE_LOGIN_ACTION,
   USER_GOOGLE_LOGIN_FAILURE_ACTION,
+  USER_FACEBOOK_LOGIN_ACTION,
+  USER_GITHUB_LOGIN_ACTION,
   USER_LOGIN_ACTION,
   USER_LOGOUT_ACTION,
 } from './user.actions';
@@ -47,6 +49,30 @@ export class UserEffects {
             USER_GOOGLE_LOGIN_FAILURE_ACTION({ message: onrejected.message })
           );
         });
+        this.userService.setUserLoading(false);
+      })
+    )
+  );
+
+  userFacebookLoginActionEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(USER_FACEBOOK_LOGIN_ACTION),
+      tap(async () => {
+        this.userService.setUserLoading(true);
+        const provider = new firebase.auth.FacebookAuthProvider();
+        await this.afAuth.signInWithPopup(provider);
+        this.userService.setUserLoading(false);
+      })
+    )
+  );
+
+  userGithubLoginActionEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(USER_GITHUB_LOGIN_ACTION),
+      tap(async () => {
+        this.userService.setUserLoading(true);
+        const provider = new firebase.auth.GithubAuthProvider();
+        await this.afAuth.signInWithPopup(provider);
         this.userService.setUserLoading(false);
       })
     )
