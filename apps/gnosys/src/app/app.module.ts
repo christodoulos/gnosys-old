@@ -4,12 +4,12 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
+import { RouterModule } from '@angular/router';
 
 import { akitaConfig } from '@datorama/akita';
 akitaConfig({ resettable: true });
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +18,13 @@ akitaConfig({ resettable: true });
     AngularFireModule.initializeApp(environment.firebase),
     AkitaNgRouterStoreModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
-    AppRoutingModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        loadChildren: () =>
+          import('@gnosys/landing').then((m) => m.LandingModule),
+      },
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent],

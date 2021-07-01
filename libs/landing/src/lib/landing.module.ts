@@ -7,6 +7,7 @@ import { StateModule } from '@gnosys/state';
 
 import { LandingComponent } from './landing/landing.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { LandingSidebarComponent } from './landing-sidebar/landing-sidebar.component';
 
 @NgModule({
   imports: [
@@ -17,12 +18,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
         pathMatch: 'full',
         component: LandingComponent,
       },
+      { path: '', component: LandingSidebarComponent, outlet: 'sidebar' },
       { path: 'signin', component: SignInComponent },
     ]),
     UIModule,
     StateModule,
   ],
-  declarations: [LandingComponent, SignInComponent],
-  exports: [LandingComponent],
+  declarations: [LandingComponent, SignInComponent, LandingSidebarComponent],
 })
 export class LandingModule {}
