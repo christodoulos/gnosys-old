@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'gnosys-user-landing',
@@ -6,8 +6,4 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./user-landing.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserLandingComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class UserLandingComponent {}
