@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@datorama/akita-ng-effects';
 import firebase from 'firebase/app'; // https://bit.ly/34j8dHw
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -21,7 +22,8 @@ export class UserEffects {
   constructor(
     private actions$: Actions,
     private userService: UserService,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private router: Router
   ) {}
 
   userLoginActionEffect$ = createEffect(() =>
@@ -34,6 +36,7 @@ export class UserEffects {
       tap(async () => {
         this.afAuth.signOut();
         resetStores();
+        this.router.navigate(['/']);
       })
     )
   );
@@ -74,6 +77,7 @@ export class UserEffects {
         const provider = new firebase.auth.GithubAuthProvider();
         await this.afAuth.signInWithPopup(provider);
         this.userService.setUserLoading(false);
+        this.router.navigate(['/user']);
       })
     )
   );

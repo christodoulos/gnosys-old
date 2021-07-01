@@ -18,17 +18,22 @@ import { AppComponent } from './app.component';
     AngularFireModule.initializeApp(environment.firebase),
     AkitaNgRouterStoreModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
-    RouterModule.forRoot([
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          loadChildren: () =>
+            import('@gnosys/landing').then((m) => m.LandingModule),
+        },
+        {
+          path: 'user',
+          loadChildren: () => import('@gnosys/user').then((m) => m.UserModule),
+        },
+      ],
       {
-        path: '',
-        loadChildren: () =>
-          import('@gnosys/landing').then((m) => m.LandingModule),
-      },
-      {
-        path: 'user',
-        loadChildren: () => import('@gnosys/user').then((m) => m.UserModule),
-      },
-    ]),
+        paramsInheritanceStrategy: 'always',
+      }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent],
