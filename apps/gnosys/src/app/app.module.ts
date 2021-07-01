@@ -24,6 +24,10 @@ import { AppComponent } from './app.component';
         loadChildren: () =>
           import('@gnosys/landing').then((m) => m.LandingModule),
       },
+      {
+        path: 'user',
+        loadChildren: () => import('@gnosys/user').then((m) => m.UserModule),
+      },
     ]),
   ],
   providers: [],
