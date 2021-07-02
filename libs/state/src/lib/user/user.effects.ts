@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@datorama/akita-ng-effects';
+import {
+  Actions,
+  createEffect,
+  ofType,
+  payload,
+} from '@datorama/akita-ng-effects';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 
@@ -15,6 +20,7 @@ import {
   USER_GITHUB_LOGIN_ACTION,
   USER_LOGIN_ACTION,
   USER_LOGOUT_ACTION,
+  USER_UPDATE_ACTION,
 } from './user.actions';
 import { ALERT_ERROR } from '../alert/alert.actions';
 
@@ -26,6 +32,17 @@ export class UserEffects {
     private auth: AngularFireAuth,
     private router: Router
   ) {}
+
+  userUpdateActionEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(USER_UPDATE_ACTION),
+      map((payload) => payload.userData),
+      tap((data) => {
+        this.userService.updateUser({ ...data });
+        this.router.navigate(['/user']);
+      })
+    )
+  );
 
   userLoginActionEffect$ = createEffect(() =>
     this.actions$.pipe(ofType(USER_LOGIN_ACTION))
@@ -50,9 +67,13 @@ export class UserEffects {
         await this.auth
           .signInWithPopup(new firebase.auth.GoogleAuthProvider())
           .then((onfulfilled) => {
-            console.log(onfulfilled);
-
-            this.router.navigate(['/user']);
+            this.actions$.dispatch(
+              USER_UPDATE_ACTION({
+                userData: this.userService.parseGoogleResponse(
+                  onfulfilled.user
+                ),
+              })
+            );
           })
           .catch((onrejected) => {
             this.actions$.dispatch(

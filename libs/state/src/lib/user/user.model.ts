@@ -1,13 +1,12 @@
 export interface User {
   uid: string;
-  firstName?: string;
-  lastName?: string;
+  family_name: string;
+  given_name: string;
   email: string;
-  linkedinURL?: string;
-  photoURL?: string;
-  displayName?: string;
+  photoURL: string;
+  displayName: string;
   emailVerified: boolean;
-  loading?: boolean;
+  loading: boolean;
 }
 
 export interface Credentials {

@@ -1,5 +1,5 @@
 import { createAction, props } from '@datorama/akita-ng-effects';
-import { Credentials } from './user.model';
+import { Credentials, User } from './user.model';
 
 export const USER_LOGIN_ACTION = createAction(
   'Login',
@@ -22,3 +22,8 @@ export const USER_LOGIN_ACTION_SUCCESS = createAction('Login Success');
 export const USER_LOGIN_ACTION_FAILURE = createAction('Login Failure');
 
 export const USER_LOGOUT_ACTION = createAction('Logout');
+
+export const USER_UPDATE_ACTION = createAction(
+  'Update User Data',
+  props<{ userData: Partial<User> }>()
+);

@@ -11,7 +11,6 @@ export class UserSidebarComponent {
   constructor(private actions: Actions) {}
 
   doSignOut() {
-    console.log('lala');
     this.actions.dispatch(USER_LOGOUT_ACTION);
   }
 }
