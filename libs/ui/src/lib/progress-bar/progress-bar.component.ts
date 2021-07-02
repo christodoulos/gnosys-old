@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UserQuery } from '@gnosys/state';
 import { Observable } from 'rxjs';
 
@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   selector: 'gnosys-progress-bar',
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressBarComponent {
   userIsLoading$: Observable<boolean>;
 
   constructor(private userQuery: UserQuery) {
-    console.log('AAAAAAAAA');
     this.userIsLoading$ = this.userQuery.loading$;
   }
 }

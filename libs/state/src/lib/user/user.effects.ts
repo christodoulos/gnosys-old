@@ -34,6 +34,7 @@ export class UserEffects {
       map((payload) => payload.userData),
       tap((data) => {
         this.userService.updateUser({ ...data });
+        this.userService.setUserLoading(false);
         this.router.navigate(['/user']);
       })
     )
@@ -71,14 +72,13 @@ export class UserEffects {
             );
           })
           .catch((onrejected) => {
-            this.actions$.dispatch(
-              USER_GOOGLE_LOGIN_FAILURE_ACTION({
-                message: onrejected.message,
-              })
-            );
-          })
-          .finally(() => {
+            console.log(onrejected.message);
             this.userService.setUserLoading(false);
+            // this.actions$.dispatch(
+            //   USER_GOOGLE_LOGIN_FAILURE_ACTION({
+            //     message: onrejected.message,
+            //   })
+            // );
           });
       })
     )
@@ -116,6 +116,7 @@ export class UserEffects {
       map((payload) => payload.message),
       tap((message) => {
         this.actions$.dispatch(ALERT_ERROR({ message }));
+        this.userService.setUserLoading(false);
       })
     )
   );
