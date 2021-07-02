@@ -9,6 +9,7 @@ import { StateModule } from '@gnosys/state';
 import { LandingComponent } from './landing/landing.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { LandingSidebarComponent } from './landing-sidebar/landing-sidebar.component';
+import { LandingProgressbarComponent } from './landing-progressbar/landing-progressbar.component';
 
 const redirectLoggedInToUser = () => redirectLoggedInTo(['user']);
 
@@ -18,10 +19,14 @@ const redirectLoggedInToUser = () => redirectLoggedInTo(['user']);
     RouterModule.forChild([
       {
         path: '',
-        pathMatch: 'full',
         component: LandingComponent,
       },
       { path: '', component: LandingSidebarComponent, outlet: 'sidebar' },
+      {
+        path: '',
+        component: LandingProgressbarComponent,
+        outlet: 'progressbar',
+      },
       {
         path: 'signin',
         component: SignInComponent,
@@ -31,6 +36,11 @@ const redirectLoggedInToUser = () => redirectLoggedInTo(['user']);
     UIModule,
     StateModule,
   ],
-  declarations: [LandingComponent, SignInComponent, LandingSidebarComponent],
+  declarations: [
+    LandingComponent,
+    SignInComponent,
+    LandingSidebarComponent,
+    LandingProgressbarComponent,
+  ],
 })
 export class LandingModule {}

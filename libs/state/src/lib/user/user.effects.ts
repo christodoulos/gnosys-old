@@ -72,7 +72,9 @@ export class UserEffects {
           })
           .catch((onrejected) => {
             this.actions$.dispatch(
-              USER_GOOGLE_LOGIN_FAILURE_ACTION({ message: onrejected.message })
+              USER_GOOGLE_LOGIN_FAILURE_ACTION({
+                message: onrejected.message,
+              })
             );
           })
           .finally(() => {
