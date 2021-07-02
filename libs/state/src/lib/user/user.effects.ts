@@ -47,9 +47,8 @@ export class UserEffects {
       ofType(USER_GOOGLE_LOGIN_ACTION),
       tap(async () => {
         this.userService.setUserLoading(true);
-        const provider = new firebase.auth.GoogleAuthProvider();
         await this.auth
-          .signInWithPopup(provider)
+          .signInWithPopup(new firebase.auth.GoogleAuthProvider())
           .then((onfulfilled) => {
             console.log(onfulfilled);
 
