@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@datorama/akita-ng-effects';
-import firebase from 'firebase/app'; // https://bit.ly/34j8dHw
 import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
+
 import { resetStores } from '@datorama/akita';
 import { map, tap } from 'rxjs/operators';
 
@@ -22,7 +23,7 @@ export class UserEffects {
   constructor(
     private actions$: Actions,
     private userService: UserService,
-    private afAuth: AngularFireAuth,
+    private auth: AngularFireAuth,
     private router: Router
   ) {}
 
@@ -34,7 +35,7 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(USER_LOGOUT_ACTION),
       tap(async () => {
-        this.afAuth.signOut();
+        this.auth.signOut();
         resetStores();
         this.router.navigate(['/']);
       })
@@ -46,14 +47,22 @@ export class UserEffects {
       ofType(USER_GOOGLE_LOGIN_ACTION),
       tap(async () => {
         this.userService.setUserLoading(true);
-        const provider = new firebase.auth.GoogleAuthProvider(); // https://bit.ly/3p9dABj
-        await this.afAuth.signInWithPopup(provider).catch((onrejected) => {
-          this.actions$.dispatch(
-            USER_GOOGLE_LOGIN_FAILURE_ACTION({ message: onrejected.message })
-          );
-        });
-        this.userService.setUserLoading(false);
-        this.router.navigate(['/user']);
+        const provider = new firebase.auth.GoogleAuthProvider();
+        await this.auth
+          .signInWithPopup(provider)
+          .then((onfulfilled) => {
+            console.log(onfulfilled);
+
+            this.router.navigate(['/user']);
+          })
+          .catch((onrejected) => {
+            this.actions$.dispatch(
+              USER_GOOGLE_LOGIN_FAILURE_ACTION({ message: onrejected.message })
+            );
+          })
+          .finally(() => {
+            this.userService.setUserLoading(false);
+          });
       })
     )
   );
@@ -64,7 +73,7 @@ export class UserEffects {
       tap(async () => {
         this.userService.setUserLoading(true);
         const provider = new firebase.auth.FacebookAuthProvider();
-        await this.afAuth.signInWithPopup(provider);
+        await this.auth.signInWithPopup(provider);
         this.userService.setUserLoading(false);
         this.router.navigate(['/user']);
       })
@@ -77,7 +86,7 @@ export class UserEffects {
       tap(async () => {
         this.userService.setUserLoading(true);
         const provider = new firebase.auth.GithubAuthProvider();
-        await this.afAuth.signInWithPopup(provider);
+        await this.auth.signInWithPopup(provider);
         this.userService.setUserLoading(false);
         this.router.navigate(['/user']);
       })
