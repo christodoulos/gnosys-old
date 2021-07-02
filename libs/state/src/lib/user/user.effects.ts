@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  Actions,
-  createEffect,
-  ofType,
-  payload,
-} from '@datorama/akita-ng-effects';
+import { Actions, createEffect, ofType } from '@datorama/akita-ng-effects';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 
