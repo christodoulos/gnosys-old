@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@datorama/akita-ng-effects';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
@@ -24,8 +23,7 @@ export class UserEffects {
   constructor(
     private actions$: Actions,
     private userService: UserService,
-    private auth: AngularFireAuth,
-    private router: Router
+    private auth: AngularFireAuth
   ) {}
 
   userUpdateActionEffect$ = createEffect(() =>
@@ -36,7 +34,6 @@ export class UserEffects {
         this.userService.updateUser({ ...data });
         this.userService.updateFirestoreDoc(data);
         this.userService.setUserLoading(false);
-        this.router.navigate(['/user']);
       })
     )
   );
@@ -49,9 +46,9 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(USER_LOGOUT_ACTION),
       tap(async () => {
+        console.log('LOGOUT EFFECT');
         this.auth.signOut();
         resetStores();
-        this.router.navigate(['/']);
       })
     )
   );
@@ -93,7 +90,6 @@ export class UserEffects {
         const provider = new firebase.auth.FacebookAuthProvider();
         await this.auth.signInWithPopup(provider);
         this.userService.setUserLoading(false);
-        this.router.navigate(['/user']);
       })
     )
   );
@@ -106,7 +102,6 @@ export class UserEffects {
         const provider = new firebase.auth.GithubAuthProvider();
         await this.auth.signInWithPopup(provider);
         this.userService.setUserLoading(false);
-        this.router.navigate(['/user']);
       })
     )
   );

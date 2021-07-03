@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
   AngularFirestore,
@@ -14,13 +15,16 @@ export class UserService {
   constructor(
     private userStore: UserStore,
     private auth: AngularFireAuth,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private router: Router
   ) {
     this.auth.authState.subscribe((user) => {
       if (user) {
         console.log(`USER SERVICE: \t${user.email} is LOGGEDIN`);
+        this.router.navigate(['user']);
       } else {
         console.log('USER SERVICE: \tLOGGED OUT');
+        this.router.navigate(['']);
       }
     });
   }

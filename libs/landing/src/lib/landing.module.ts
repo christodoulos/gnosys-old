@@ -22,8 +22,18 @@ const redirectLoggedInToUser = () => redirectLoggedInTo(['user']);
         path: '',
         component: LandingComponent,
       },
-      { path: '', component: LandingSidebarComponent, outlet: 'sidebar' },
-      { path: '', component: LandingTopbarComponent, outlet: 'topbar' },
+      {
+        path: '',
+        component: LandingSidebarComponent,
+        outlet: 'sidebar',
+        ...canActivate(redirectLoggedInToUser),
+      },
+      {
+        path: '',
+        component: LandingTopbarComponent,
+        outlet: 'topbar',
+        ...canActivate(redirectLoggedInToUser),
+      },
       {
         path: '',
         component: LandingProgressbarComponent,
