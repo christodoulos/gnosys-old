@@ -34,6 +34,7 @@ export class UserEffects {
       map((payload) => payload.userData),
       tap((data) => {
         this.userService.updateUser({ ...data });
+        this.userService.updateFirestoreDoc(data);
         this.userService.setUserLoading(false);
         this.router.navigate(['/user']);
       })

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 
 import { UserStore } from './user.store';
@@ -7,7 +11,11 @@ import { User } from './user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private userStore: UserStore, private auth: AngularFireAuth) {
+  constructor(
+    private userStore: UserStore,
+    private auth: AngularFireAuth,
+    private afs: AngularFirestore
+  ) {
     this.auth.authState.subscribe((user) => {
       if (user) {
         console.log(`USER SERVICE: \t${user.email} is LOGGEDIN`);
@@ -35,5 +43,12 @@ export class UserService {
         emailVerified: user.emailVerified || false,
       };
     return {};
+  }
+
+  updateFirestoreDoc(data: Partial<User>) {
+    const userRef: AngularFirestoreDocument<Partial<User>> = this.afs.doc(
+      `users/${data.uid}`
+    );
+    userRef.set({ ...data }, { merge: true });
   }
 }
