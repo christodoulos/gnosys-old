@@ -10,6 +10,7 @@ import { akitaConfig } from '@datorama/akita';
 akitaConfig({ resettable: true });
 
 import { AppComponent } from './app.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { AppComponent } from './app.component';
         paramsInheritanceStrategy: 'always',
       }
     ),
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ErrorTailorModule } from '@ngneat/error-tailor';
 
 import {
@@ -14,12 +15,13 @@ import { SignInUIComponent } from './sign-in-ui/sign-in-ui.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { GnosysLogoComponent } from './gnosys-logo/gnosys-logo.component';
 import { UserSidebarUIComponent } from './user-sidebar-ui/user-sidebar-ui.component';
+import { GnosysFaIconComponent } from './gnosys-fa-icon/gnosys-fa-icon.component';
 
 @NgModule({
   imports: [
     CommonModule,
-
     ReactiveFormsModule,
+    FontAwesomeModule,
     ErrorTailorModule.forRoot({
       controlErrorComponentAnchorFn: anchorErrorComponent,
       controlErrorComponent: UIFormsErrorComponent,
@@ -37,12 +39,14 @@ import { UserSidebarUIComponent } from './user-sidebar-ui/user-sidebar-ui.compon
     ProgressBarComponent,
     GnosysLogoComponent,
     UserSidebarUIComponent,
+    GnosysFaIconComponent,
   ],
   exports: [
     SignInUIComponent,
     ProgressBarComponent,
     GnosysLogoComponent,
     UserSidebarUIComponent,
+    GnosysFaIconComponent,
   ],
 })
 export class UIModule {}
