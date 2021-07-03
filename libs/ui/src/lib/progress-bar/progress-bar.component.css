@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   /* background-color: rgba(0, 155, 255, 0.7);  */
-  background-color: indigo;
+  background-color: red;
 }
 
 .shim-blue::after {
@@ -15,8 +15,8 @@
   background-image: linear-gradient(
     90deg,
     rgba(233, 233, 233, 1) 0,
-    rgba(233, 233, 233, 0.9) 50%,
-    rgba(233, 233, 233, 0.8) 100%
+    rgba(233, 233, 233, 0.8) 50%,
+    rgba(233, 233, 233, 0.6) 100%
   );
   animation: shimmer 2s ease-out infinite;
   content: '';
