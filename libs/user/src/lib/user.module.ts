@@ -8,6 +8,7 @@ import { StateModule } from '@gnosys/state';
 
 import { UserLandingComponent } from './user-landing/user-landing.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
+import { UserTopbarComponent } from './user-topbar/user-topbar.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['signin']);
 
@@ -22,10 +23,15 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['signin']);
         ...canActivate(redirectUnauthorizedToLogin),
       },
       { path: '', component: UserSidebarComponent, outlet: 'sidebar' },
+      { path: '', component: UserTopbarComponent, outlet: 'topbar' },
     ]),
     UIModule,
     StateModule,
   ],
-  declarations: [UserLandingComponent, UserSidebarComponent],
+  declarations: [
+    UserLandingComponent,
+    UserSidebarComponent,
+    UserTopbarComponent,
+  ],
 })
 export class UserModule {}

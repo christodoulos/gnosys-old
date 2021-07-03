@@ -10,6 +10,7 @@ import { LandingComponent } from './landing/landing.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { LandingSidebarComponent } from './landing-sidebar/landing-sidebar.component';
 import { LandingProgressbarComponent } from './landing-progressbar/landing-progressbar.component';
+import { LandingTopbarComponent } from './landing-topbar/landing-topbar.component';
 
 const redirectLoggedInToUser = () => redirectLoggedInTo(['user']);
 
@@ -22,6 +23,7 @@ const redirectLoggedInToUser = () => redirectLoggedInTo(['user']);
         component: LandingComponent,
       },
       { path: '', component: LandingSidebarComponent, outlet: 'sidebar' },
+      { path: '', component: LandingTopbarComponent, outlet: 'topbar' },
       {
         path: '',
         component: LandingProgressbarComponent,
@@ -41,6 +43,7 @@ const redirectLoggedInToUser = () => redirectLoggedInTo(['user']);
     SignInComponent,
     LandingSidebarComponent,
     LandingProgressbarComponent,
+    LandingTopbarComponent,
   ],
 })
 export class LandingModule {}
