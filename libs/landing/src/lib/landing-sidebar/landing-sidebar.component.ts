@@ -7,6 +7,6 @@ import { UIQuery } from '@gnosys/state';
   styleUrls: ['./landing-sidebar.component.css'],
 })
 export class LandingSidebarComponent {
-  entries$ = this.uiQuery.landingSidebar$;
+  menu$ = this.uiQuery.landingSidebar$;
   constructor(private uiQuery: UIQuery) {}
 }

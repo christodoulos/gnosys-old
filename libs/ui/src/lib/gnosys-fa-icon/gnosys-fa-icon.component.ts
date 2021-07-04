@@ -21,6 +21,10 @@ import {
   faCodeBranch,
   faSave,
   faFileArchive,
+  faUserGraduate,
+  faMoneyBill,
+  faLaptopCode,
+  faBlog,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faGoogle,
@@ -39,6 +43,14 @@ export class GnosysFaIconComponent {
 
   get fa_icon() {
     switch (this.icon) {
+      case 'faBlog':
+        return faBlog;
+      case 'faLaptopCode':
+        return faLaptopCode;
+      case 'faMoneyBill':
+        return faMoneyBill;
+      case 'faUserGraduate':
+        return faUserGraduate;
       case 'faUnlock':
         return faUnlock;
       case 'faEnvelope':

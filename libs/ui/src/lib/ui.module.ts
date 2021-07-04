@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ErrorTailorModule } from '@ngneat/error-tailor';
@@ -17,10 +18,12 @@ import { GnosysLogoComponent } from './gnosys-logo/gnosys-logo.component';
 import { UserSidebarUIComponent } from './user-sidebar-ui/user-sidebar-ui.component';
 import { GnosysFaIconComponent } from './gnosys-fa-icon/gnosys-fa-icon.component';
 import { UserTopbarUiComponent } from './user-topbar-ui/user-topbar-ui.component';
+import { LandingSidebarUiComponent } from './landing-sidebar-ui/landing-sidebar-ui.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     ErrorTailorModule.forRoot({
@@ -42,6 +45,7 @@ import { UserTopbarUiComponent } from './user-topbar-ui/user-topbar-ui.component
     UserSidebarUIComponent,
     GnosysFaIconComponent,
     UserTopbarUiComponent,
+    LandingSidebarUiComponent,
   ],
   exports: [
     SignInUIComponent,
@@ -50,6 +54,7 @@ import { UserTopbarUiComponent } from './user-topbar-ui/user-topbar-ui.component
     UserSidebarUIComponent,
     GnosysFaIconComponent,
     UserTopbarUiComponent,
+    LandingSidebarUiComponent,
   ],
 })
 export class UIModule {}

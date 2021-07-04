@@ -1,0 +1,32 @@
+<div
+  class="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-white overflow-y-auto"
+>
+  <div class="flex items-center flex-shrink-0 px-4 space-y-5">
+    <gnosys-logo></gnosys-logo>
+  </div>
+  <div class="mt-5 flex-grow flex flex-col">
+    <nav class="flex-1 bg-white space-y-1" aria-label="Sidebar">
+      <!-- Current: "bg-indigo-50 border-indigo-600 text-indigo-600", Default: "border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+      <a
+        *ngFor="let entry of (menu$ | async)?.entries; index as i"
+        routerLink="{{ entry.url }}"
+        class="{{
+          i === (menu$ | async)?.active
+            ? 'bg-indigo-50 border-indigo-600 text-indigo-600'
+            : 'border-transparent text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+        }} group flex items-center px-3 py-2 text-sm font-medium border-l-4"
+      >
+        <!-- Current: "text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500" -->
+        <gnosys-faicon
+          icon="{{ entry.icon }}"
+          class="{{
+            i === (menu$ | async)?.active
+              ? 'text-indigo-500'
+              : 'text-gray-400 group-hover:text-gray-500'
+          }} mr-3 flex-shrink-0 h-6 w-6 text-lg"
+        ></gnosys-faicon>
+        {{ entry.text }}</a
+      >
+    </nav>
+  </div>
+</div>
