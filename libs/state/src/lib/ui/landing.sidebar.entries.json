@@ -1,5 +1,5 @@
 [
-  { "icon": "faUserGraduate", "text": "About US", "url": "/about" },
+  { "icon": "faUserGraduate", "text": "About us", "url": "/about" },
   { "icon": "faMoneyBill", "text": "Pricing", "url": "/pricing" },
   { "icon": "faLaptopCode", "text": "Resources", "url": "/resources" },
   { "icon": "faBlog", "text": "Blog", "url": "/blog" }
