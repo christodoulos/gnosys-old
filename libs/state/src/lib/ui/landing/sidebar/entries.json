@@ -1,0 +1,6 @@
+[
+  { "icon": "about us", "text": "About US", "url": "/about" },
+  { "icon": "pricing", "text": "Pricing", "url": "/pricing" },
+  { "icon": "resources", "text": "Resources", "url": "/resources" },
+  { "icon": "blog", "text": "Blog", "url": "/blog" }
+]
