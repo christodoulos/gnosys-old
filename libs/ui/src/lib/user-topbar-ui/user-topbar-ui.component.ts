@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UserTopbarUiComponent {
   @Input() photoURL$: Observable<string> | undefined;
+  @Input() displayName$: Observable<string> | undefined;
   dropDownVisible = false;
 
   toggleDropDown() {

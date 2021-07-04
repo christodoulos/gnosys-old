@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class UserTopbarComponent {
   photoURL$: Observable<string>;
+  displayName$: Observable<string>;
   constructor(private userQuery: UserQuery) {
     this.photoURL$ = this.userQuery.userPhotoURL$;
+    this.displayName$ = this.userQuery.userDisplayName$;
   }
 }
