@@ -4,4 +4,8 @@ import { Codemirror } from './codemirror.model';
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'codemirror' })
-export class CodemirrorStore extends Store<Codemirror> {}
+export class CodemirrorStore extends Store<Codemirror> {
+  constructor() {
+    super({});
+  }
+}
