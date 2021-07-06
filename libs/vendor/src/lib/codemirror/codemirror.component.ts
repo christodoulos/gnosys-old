@@ -42,6 +42,5 @@ export class CodemirrorComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.iFrameElmRef) this.iframe = this.iFrameElmRef.nativeElement;
     this.iWindow = (this.iframe as HTMLIFrameElement).contentWindow;
-    console.log(this.iframe, this.iWindow);
   }
 }

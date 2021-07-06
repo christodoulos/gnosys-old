@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/assets/codemirror/lib/codemirror.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="/assets/codemirror/addon/fold/foldgutter.css"
+    />
+    <link rel="stylesheet" href="/assets/codemirror/custom.css" />
+  </head>
+  <body>
+    <script src="/assets/codemirror/lib/codemirror.js"></script>
+    <script src="/assets/codemirror/addon/selection/active-line.js"></script>
+    <script src="/assets/codemirror/addon/fold/foldcode.js"></script>
+    <script src="/assets/codemirror/addon/fold/foldgutter.js"></script>
+    <script src="/assets/codemirror/addon/fold/brace-fold.js"></script>
+    <script src="/assets/codemirror/addon/fold/indent-fold.js"></script>
+    <script src="/assets/codemirror/addon/fold/xml-fold.js"></script>
+    <script src="/assets/codemirror/addon/fold/comment-fold.js"></script>
+    <script src="/assets/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="/assets/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="/assets/codemirror/mode/python/python.js"></script>
+    <script src="/assets/codemirror/mode/xml/xml.js"></script>
+    <script>
+      const sketch = '';
+      var editor = CodeMirror(document.body, {
+        value: sketch,
+        mode: 'python',
+        lineNumbers: true,
+        lineWrapping: true,
+        styleActiveLine: true,
+        foldGutter: {
+          rangeFinder: new CodeMirror.fold.combine(
+            CodeMirror.fold.indent,
+            CodeMirror.fold.comment
+          ),
+        },
+        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+        lint: true,
+        extraKeys: {
+          'Ctrl-Q': function (cm) {
+            cm.foldCode(cm.getCursor());
+          },
+        },
+      });
+      editor.on('change', () => {
+        const value = editor.getValue();
+        parent.window.postMessage({ editor: value });
+      });
+
+      window.addEventListener('message', handleMessage, false);
+      function handleMessage(e) {
+        editor.setValue(e.data);
+      }
+    </script>
+  </body>
+</html>
