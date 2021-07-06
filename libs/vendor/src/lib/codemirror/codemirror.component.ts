@@ -17,17 +17,17 @@ import { CodemirrorQuery, CodemirrorService } from '@gnosys/state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CodemirrorComponent implements OnInit, AfterViewInit {
-  @ViewChild('editor') iFrameElmRef!: ElementRef;
+  @ViewChild('editor') iFrameElmRef: ElementRef | undefined;
   code$ = this.codemirrorQuery.code$;
-  iframe: any;
-  iWindow: any;
+  iframe: HTMLIFrameElement | undefined;
+  iWindow: Window | null | undefined;
   constructor(
     private codemirrorQuery: CodemirrorQuery,
     private codemirrorService: CodemirrorService
   ) {}
 
   @HostListener('window:message', ['$event'])
-  onMessage(e: any) {
+  onMessage(e: MessageEvent) {
     if (e.data.editor !== undefined) {
       const currCode = e.data.editor;
       this.codemirrorService.updateCurrCode(currCode);
@@ -35,12 +35,13 @@ export class CodemirrorComponent implements OnInit, AfterViewInit {
   }
   ngOnInit(): void {
     this.code$.subscribe((data: string) => {
-      this.iWindow?.postMessage(data);
+      this.iWindow?.postMessage(data, '');
     });
   }
 
   ngAfterViewInit(): void {
-    this.iframe = this.iFrameElmRef.nativeElement;
+    if (this.iFrameElmRef) this.iframe = this.iFrameElmRef.nativeElement;
     this.iWindow = (this.iframe as HTMLIFrameElement).contentWindow;
+    console.log(this.iframe, this.iWindow);
   }
 }
