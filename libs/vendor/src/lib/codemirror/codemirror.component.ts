@@ -33,6 +33,7 @@ export class CodemirrorComponent implements OnInit, AfterViewInit {
       this.codemirrorService.updateCurrCode(currCode);
     }
   }
+
   ngOnInit(): void {
     this.code$.subscribe((data: string) => {
       this.iWindow?.postMessage(data, '');
