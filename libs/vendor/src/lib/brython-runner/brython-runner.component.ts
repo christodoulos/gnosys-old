@@ -32,7 +32,7 @@ export class BrythonRunnerComponent implements OnInit, AfterViewInit {
   run(): void {
     this.currcode$.subscribe((value) => {
       console.log(value);
-      this.iWindow?.postMessage(value, 'http://localhost:4200');
+      this.iWindow?.postMessage(value, this.iWindow.location.href);
     });
   }
 }
