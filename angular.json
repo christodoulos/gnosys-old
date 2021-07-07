@@ -216,6 +216,31 @@
           }
         }
       }
+    },
+    "vendor": {
+      "projectType": "library",
+      "root": "libs/vendor",
+      "sourceRoot": "libs/vendor/src",
+      "prefix": "gnosys",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/vendor"],
+          "options": {
+            "jestConfig": "libs/vendor/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/vendor/src/**/*.ts",
+              "libs/vendor/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

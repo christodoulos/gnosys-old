@@ -1,0 +1,16 @@
+.CodeMirror,
+.CodeMirror-foldmarker,
+.CodeMirror-lint-tooltip {
+  font-family: 'Fira Code';
+}
+
+.CodeMirror {
+  font-size: small;
+  height: 80vh;
+  color: black;
+  border: 1px solid #eee;
+}
+
+body {
+  margin: 0;
+}

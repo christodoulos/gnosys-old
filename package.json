@@ -51,6 +51,8 @@
     "@ngneat/reactive-forms": "^1.7.3",
     "@nrwl/angular": "12.4.0",
     "akita-ng-fire": "^6.0.0",
+    "brython-runner": "^1.0.10",
+    "codemirror": "^5.62.0",
     "firebase": "^7.0 || ^8.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

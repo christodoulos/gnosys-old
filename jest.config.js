@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/ui',
     '<rootDir>/libs/landing',
     '<rootDir>/libs/user',
+    '<rootDir>/libs/vendor',
   ],
 };
