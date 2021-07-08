@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserQuery } from '@gnosys/state';
+import { UserQuery, UserService } from '@gnosys/state';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,8 +10,11 @@ import { Observable } from 'rxjs';
 export class UserTopbarComponent {
   photoURL$: Observable<string>;
   displayName$: Observable<string>;
-  constructor(private userQuery: UserQuery) {
+  constructor(private userQuery: UserQuery, private userService: UserService) {
     this.photoURL$ = this.userQuery.userPhotoURL$;
     this.displayName$ = this.userQuery.userDisplayName$;
+  }
+  doSignOut() {
+    this.userService.signOut();
   }
 }

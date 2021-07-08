@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
-import { Actions } from '@datorama/akita-ng-effects';
-
-import {
-  Credentials,
-  USER_GOOGLE_LOGIN_ACTION,
-  USER_FACEBOOK_LOGIN_ACTION,
-  USER_GITHUB_LOGIN_ACTION,
-  UserQuery,
-} from '@gnosys/state';
+import { Credentials, UserService } from '@gnosys/state';
 
 @Component({
   selector: 'gnosys-sign-in',
@@ -15,21 +7,21 @@ import {
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent {
-  constructor(private actions: Actions, private user: UserQuery) {}
+  constructor(private userService: UserService) {}
 
   doGoogleSignIn() {
-    console.log('Google Sign In');
-    this.actions.dispatch(USER_GOOGLE_LOGIN_ACTION);
+    console.log('Doing Google Sign In ...');
+    this.userService.signInWithPopup('google');
   }
 
   doFacebookSignIn() {
-    console.log('Facebook Sign In');
-    this.actions.dispatch(USER_FACEBOOK_LOGIN_ACTION);
+    console.log('Doing Facebook Sign In ...');
+    this.userService.signInWithPopup('facebook');
   }
 
   doGitHubSignIn() {
-    console.log('GitHub Sign In');
-    this.actions.dispatch(USER_GITHUB_LOGIN_ACTION);
+    console.log('Doing GitHub Sign In');
+    this.userService.signInWithPopup('github');
   }
 
   doSignIn(credentials: Credentials) {

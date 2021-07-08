@@ -5,10 +5,10 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
+import { resetStores } from '@datorama/akita';
 import firebase from 'firebase/app';
 
-import { UserStore } from './user.store';
-import { User } from './user.model';
+import { User, UserStore } from '.';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -21,10 +21,13 @@ export class UserService {
     this.auth.authState.subscribe((user) => {
       if (user) {
         console.log(`USER SERVICE: \t${user.email} is LOGGEDIN`);
+        const data = this.parseFirebaseResponse(user);
+        this.updateUser(data);
+        this.updateFirestoreDoc(data);
         this.router.navigate(['user']);
       } else {
-        console.log('USER SERVICE: \tLOGGED OUT');
         this.router.navigate(['']);
+        console.log('USER SERVICE: \tLOGGED OUT');
       }
     });
   }
@@ -37,7 +40,7 @@ export class UserService {
     this.userStore.update({ ...user, loading: false });
   }
 
-  parseGoogleResponse(user: firebase.User | null): Partial<User> {
+  parseFirebaseResponse(user: firebase.User | null): Partial<User> {
     if (user)
       return {
         uid: user.uid || '',
@@ -54,5 +57,25 @@ export class UserService {
       `users/${data.uid}`
     );
     userRef.set({ ...data }, { merge: true });
+  }
+
+  async signInWithPopup(prov: string) {
+    this.setUserLoading(true);
+    // Default provider is 'google'
+    let provider = new firebase.auth.GoogleAuthProvider();
+    if (prov === 'facebook')
+      provider = new firebase.auth.FacebookAuthProvider();
+    else if (prov === 'github')
+      provider = new firebase.auth.GithubAuthProvider();
+    await this.auth
+      .signInWithPopup(provider)
+      .then(() => console.log(`Signed In with provider ${provider.providerId}`))
+      .catch((onrejected) => console.log(onrejected.message))
+      .finally(() => this.setUserLoading(false));
+  }
+
+  async signOut() {
+    await this.auth.signOut();
+    resetStores();
   }
 }

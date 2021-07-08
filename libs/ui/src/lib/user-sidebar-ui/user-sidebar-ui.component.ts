@@ -9,7 +9,6 @@ export class UserSidebarUIComponent {
   @Output() signOut: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   emitSignOut() {
-    console.log('signout');
     this.signOut.emit(true);
   }
 }

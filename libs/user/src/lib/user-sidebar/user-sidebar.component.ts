@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Actions } from '@datorama/akita-ng-effects';
-import { USER_LOGOUT_ACTION } from '@gnosys/state';
+import { UserService } from '@gnosys/state';
 
 @Component({
   selector: 'gnosys-user-sidebar',
@@ -8,9 +7,9 @@ import { USER_LOGOUT_ACTION } from '@gnosys/state';
   styleUrls: ['./user-sidebar.component.css'],
 })
 export class UserSidebarComponent {
-  constructor(private actions: Actions) {}
+  constructor(private userService: UserService) {}
 
   doSignOut() {
-    this.actions.dispatch(USER_LOGOUT_ACTION);
+    this.userService.signOut();
   }
 }

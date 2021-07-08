@@ -5,7 +5,6 @@ import { canActivate, redirectLoggedInTo } from '@angular/fire/auth-guard';
 
 import { UIModule } from '@gnosys/ui';
 import { StateModule } from '@gnosys/state';
-import { VendorModule } from '@gnosys/vendor';
 
 import { LandingComponent } from './landing/landing.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -48,7 +47,6 @@ const redirectLoggedInToUser = () => redirectLoggedInTo(['user']);
     ]),
     UIModule,
     StateModule,
-    VendorModule,
   ],
   declarations: [
     LandingComponent,
